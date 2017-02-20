@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -23,17 +25,33 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+	public String home( Model model) {
 		return "home";
 	}
+	@RequestMapping(value = "/postExample", method = RequestMethod.GET)
+	public String postExample( Model model) {
+		return "postExample";
+	}
+	@RequestMapping(value = "/getExample", method = RequestMethod.GET)
+	public String getExample( Model model) {
+		return "getExample";
+	}
+	@RequestMapping(value = "postRequest", method = RequestMethod.POST)
+	public String postRequest(HttpServletRequest request, Model model){
+		model.addAttribute("userName", request.getParameter("userName"));
+		model.addAttribute("address", request.getParameter("address"));
+		model.addAttribute("phoneNumber", request.getParameter("phoneNumber"));
+		model.addAttribute("eMail", request.getParameter("eMail"));
+		return "showInfo";
+	}
+	@RequestMapping(value = "getRequest", method = RequestMethod.GET)
+	public String getRequest(HttpServletRequest request, Model model){
+		model.addAttribute("userName", request.getParameter("userName"));
+		model.addAttribute("address", request.getParameter("address"));
+		model.addAttribute("phoneNumber", request.getParameter("phoneNumber"));
+		model.addAttribute("eMail", request.getParameter("eMail"));
+		return "showInfo";
+	}
+	
 	
 }
