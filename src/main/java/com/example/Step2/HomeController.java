@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page.
@@ -29,28 +30,12 @@ public class HomeController {
 		return "home";
 	}
 	@RequestMapping(value = "/postExample", method = RequestMethod.GET)
-	public String postExample( Model model) {
+	public String postExample(@RequestParam(value="subject")String subject, Model model) {
 		return "postExample";
 	}
 	@RequestMapping(value = "/getExample", method = RequestMethod.GET)
 	public String getExample( Model model) {
 		return "getExample";
-	}
-	@RequestMapping(value = "postRequest", method = RequestMethod.POST)
-	public String postRequest(HttpServletRequest request, Model model){
-		model.addAttribute("userName", request.getParameter("userName"));
-		model.addAttribute("address", request.getParameter("address"));
-		model.addAttribute("phoneNumber", request.getParameter("phoneNumber"));
-		model.addAttribute("eMail", request.getParameter("eMail"));
-		return "showInfo";
-	}
-	@RequestMapping(value = "getRequest", method = RequestMethod.GET)
-	public String getRequest(HttpServletRequest request, Model model){
-		model.addAttribute("userName", request.getParameter("userName"));
-		model.addAttribute("address", request.getParameter("address"));
-		model.addAttribute("phoneNumber", request.getParameter("phoneNumber"));
-		model.addAttribute("eMail", request.getParameter("eMail"));
-		return "showInfo";
 	}
 	
 	

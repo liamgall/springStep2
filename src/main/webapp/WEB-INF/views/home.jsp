@@ -7,6 +7,14 @@
 <title>Home</title>
 </head>
 <body>
-<h1>Home</h1>
+	<h1>Home</h1>
+	<form action="/postExample" method="get">
+		<button type="submit" name="subject" value="post">Post</button>
+	</form>
+
+	<form action="/getExample" method="get">
+		<button type="submit" name="subject" value="get">Get</button>
+		
+	</form>
 </body>
 </html>
