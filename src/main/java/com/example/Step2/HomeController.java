@@ -30,11 +30,11 @@ public class HomeController {
 		return "home";
 	}
 	@RequestMapping(value = "/postExample", method = RequestMethod.GET)
-	public String postExample(@RequestParam(value="subject")String subject, Model model) {
+	public String postExample() {
 		return "postExample";
 	}
 	@RequestMapping(value = "/getExample", method = RequestMethod.GET)
-	public String getExample( Model model) {
+	public String getExample() {
 		return "getExample";
 	}
 	
