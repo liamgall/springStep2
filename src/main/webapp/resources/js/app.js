@@ -21,9 +21,9 @@ $userName.keyup(function() {
 	var textTip = $(this).next('strong');
 	if ($userName.val().length == 0) // 입력 값이 없을 때
 		textTip.text('');
-	else if ($userName.val().length > 4)
+	else if ($userName.val().length > 4) // 이름이 4글자 초과인 경우
 		textTip.text('이름이 너무 깁니다.');
-	else if ($userName.val().length < 2)
+	else if ($userName.val().length < 2) // 이름이 2글자 미만인 경우
 		textTip.text('이름이 너무 짧습니다.');
 	else
 		textTip.text('적절함.');
@@ -31,7 +31,7 @@ $userName.keyup(function() {
 /* 전화번호 무결성 검사 */
 $phoneNumber.keyup(function() {
 	var textTip = $(this).next('strong');
-	if ($phoneNumber.val().indexOf('-') != -1)
+	if ($phoneNumber.val().indexOf('-') != -1) // 하이픈 입력한 경우
 		textTip.text('하이픈(-) 입력 금지');
 	else
 		textTip.text('');

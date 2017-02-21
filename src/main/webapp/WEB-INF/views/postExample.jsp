@@ -4,18 +4,9 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
-<style>
-#label {
-	margin-left: 5px;
-}
-ul{
-	width: 500px;
-}
-input{
-	margin-bottom:15px;
-}
-</style>
-<title>Home</title>
+<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+
+<title>Post Example</title>
 </head>
 <body>
 	<p>(*)항목은 반드시 입력</p>
@@ -61,8 +52,7 @@ input{
 	</table>
 
 </body>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 <script>
 	
