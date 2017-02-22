@@ -4,26 +4,20 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
-<style>
-#label {
-	margin-left: 5px;
-}
-</style>
-<title>Home</title>
+<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+
+<title>Get Example</title>
 </head>
 <body>
 
+	
 	<form action="getRequest" id="form" method="get">
 		<p>(*)항목은 반드시 입력</p>
 		<ul>
-			<li><label id="label">이름 (*)</label> <input id="userName"
-				name="userName" /></li>
-			<li><label id="label">주소 (*)</label> <input id="address"
-				name="address" /></li>
-			<li><label id="label">전화번호 (*)</label> <input id="phoneNumber"
-				name="phoneNumber" /></li>
-			<li><label id="label">이메일 (*)</label> <input id="eMail"
-				name="eMail" /></li>
+			<li><label id="label">이름 (*)</label> <input id="userName" name="userName" /></li>
+			<li><label id="label">주소 (*)</label> <input id="address" name="address" /></li>
+			<li><label id="label">전화번호 (*)</label> <input id="phoneNumber" name="phoneNumber" /></li>
+			<li><label id="label">이메일 (*)</label> <input id="eMail" name="eMail" /></li>
 		</ul>
 		<br>
 		<p>가입 경로</p>

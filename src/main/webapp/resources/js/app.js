@@ -1,12 +1,8 @@
-/**
- * 
- */
 
 /* 정규표현식 */
-var regexUserName = /^[가-힣]{1,20}$/; // 이름 검사식
-var regexEMail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; // 이메일
-// 검사식
-var regexPhoneNumber = /^\d{11,12}$/; // 전화번호 검사식
+var regexUserName = /^[가-힣]{2,4}$/; // 이름 검사식
+var regexEMail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; // 이메일 검사식
+var regexPhoneNumber = /^\d{11}$/; // 전화번호 검사식
 var dataSet = {};
 var $form = $('#form');
 var $userName = $('#userName');
@@ -14,21 +10,21 @@ var $address = $('#address');
 var $phoneNumber = $('#phoneNumber');
 var $eMail = $('#eMail');
 var checkList = "";
-$('#userName, #phoneNumber').after('<strong></strong>');
+$('#userName, #phoneNumber').after('<strong id="tooltip"></strong>');
 
 /* 이름 무결성 검사 */
 $userName.keyup(function() {
 	var textTip = $(this).next('strong');
 	if ($userName.val().length == 0) // 입력 값이 없을 때
 		textTip.text('');
-	else if(!regexUserName.test($userName.val()))
-		textTip.text('한글만 입력해주세요.');
 	else if ($userName.val().length > 4) // 이름이 4글자 초과인 경우
 		textTip.text('이름이 너무 깁니다.');
 	else if ($userName.val().length < 2) // 이름이 2글자 미만인 경우
 		textTip.text('이름이 너무 짧습니다.');
+	else if(!regexUserName.test($userName.val()))
+		textTip.text('한글만 입력해주세요.');
 	else
-		textTip.text('적절함.');
+		textTip.text('');
 })
 /* 전화번호 무결성 검사 */
 $phoneNumber.keyup(function() {
@@ -51,7 +47,7 @@ $('#button').click(function() {
 			phoneNumber : $('#phoneNumber').val(),
 			eMail : $('#eMail').val(),
 			registerPath : $('#registerPath').val(),
-			checkList : checkList.substr(1)
+			checkList : checkList
 		}
 		$.ajax({
 			type : "POST",
@@ -80,7 +76,7 @@ function checkValidate() {
 		alert('[이름 입력 오류] 2~4글자의 한글 이름을 입력해주세요.');
 		$userName.focus();
 		return false;
-	} else if ($address.val() == null || $address.val() == "") { // 이메일 검사
+	} else if ($address.val() == null) { // 이메일 검사
 		alert('[주소 입력 오류] 주소를 입력해 주세요.');
 		$address.focus();
 		return false;
@@ -100,10 +96,18 @@ function checkValidate() {
 				checkList += ',' + $(this).attr('name');
 		});
 		document.getElementById('registerPath').value = $('#registerPath').val();
+		checkList = checkList.substr(1);
+		document.getElementById('checkList').value = checkList;
 		return true;
 	}
 }
 /* form submit 버튼을 이용해 request 보낼 때 */
 $form.submit(function() {
-	return checkValidate();
+	if(checkValidate()){
+		setTimeout(function(){
+			return true;
+		}, 1000)
+	}else{
+		return false;
+	}
 });
