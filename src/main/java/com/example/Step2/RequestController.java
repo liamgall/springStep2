@@ -37,6 +37,8 @@ public class RequestController {
 		hashmap.putAll(param);
 		return hashmap;
 	}
+	
+	
 	@RequestMapping(value = "/getRequest", method = RequestMethod.GET)
 	public String getRequest(HttpServletRequest request, Model model){
 		model.addAttribute("userName", request.getParameter("userName"));
